@@ -16,6 +16,7 @@ inputValidationPassword.addEventListener("keyup", validateForm);
 function validateForm(){
     validateRequired(inputNom);
     validateRequired(inputPreNom);
+    validateMail(inputMail);
 }
 
 function validateRequired(input){
@@ -26,5 +27,21 @@ function validateRequired(input){
     else{
         input.classList.remove("is-valid");
         input.classList.add("is-invalid");
+    }
+}
+
+function validateMail(input){
+    //Définir mon regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mailUser = input.value;
+    if(mailUser.match(emailRegex)){
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid"); 
+        return true;
+    }
+    else{
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+        return false;
     }
 }
